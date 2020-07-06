@@ -34,3 +34,11 @@ def contact(request):
 def about(request):
     messages.success(request, 'Welcome To abouts')
     return render(request, 'home/about.html')
+
+
+def search(request):
+    # allPosts = Post.objects.all()
+    query = request.GET['query']
+    allPosts = Post.objects.filter(title__icontains=query)
+    params = {'allPosts': allPosts}
+    return render(request, 'home/search.html', params)
