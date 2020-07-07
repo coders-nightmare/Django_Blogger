@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Contact
 from django.contrib import messages
 from blog.models import Post
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -51,3 +52,38 @@ def search(request):
 
     params = {'allPosts': allPosts, 'query': query}
     return render(request, 'home/search.html', params)
+
+
+# handling sign up
+def handleSignup(request):
+    if(request.method == "POST"):
+        username = request.POST.get('username', '')
+        fname = request.POST.get('fname', '')
+        lname = request.POST.get('lname', '')
+        email = request.POST.get('email', '')
+        password1 = request.POST.get('password1', '')
+        password2 = request.POST.get('password2', '')
+        # Check for errorneous inputs
+        if(len(username) > 10):
+            messages.error(
+                request, "Username must be under 10 Characters")
+            return redirect('/')
+        if not username.isalnum():
+            messages.error(
+                request, "Username cannot contain special characters")
+            return redirect('/')
+        if(password1 != password2):
+            messages.error(
+                request, "Passwords are not matching")
+            return redirect('/')
+
+        # Create the user
+        myuser = User.objects.create_user(username, email, password1)
+        myuser.first_name = fname
+        myuser.last_name = lname
+        myuser.save()
+        messages.success(
+            request, "Your Blogger account has been successfully created")
+        return redirect('/')
+    else:
+        return HttpResponse("<h1>404 - Not Found</h1>")

@@ -79,44 +79,46 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/" method="GET">
+                    <form action="/signup/" method="POST">
+                        {% csrf_token %}
                         <div class="form-group row">
-                            <label for="username" class="col-sm-2 col-form-label">Username</label>
+                            <label for="username" class="col-sm-2 col-form-label">Username </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="username" name="username">
+                                <input type="text" class="form-control" id="username" name="username"
+                                    placeholder="username (LowerCase & AlphaNumeric)" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="fname" class="col-sm-2 col-form-label">FirstName</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="fname" name="fname">
+                                <input type="text" class="form-control" id="fname" name="fname" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="lname" class="col-sm-2 col-form-label">LastName</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="lname" name="lname">
+                                <input type="text" class="form-control" id="lname" name="lname" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="email" class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="email" name="email"
-                                    placeholder="email@example.com">
+                                    placeholder="email@example.com" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="password1" class="col-sm-2 col-form-label">Password</label>
                             <div class="col-sm-10">
                                 <input type="password" class="form-control" id="password1" placeholder="Password"
-                                    name="password1">
+                                    name="password1" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="password2" class="col-sm-2 col-form-label">Re-enter Password</label>
                             <div class="col-sm-10">
                                 <input type="password" class="form-control" id="password2" placeholder="Password"
-                                    name="password2">
+                                    name="password2" required>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
