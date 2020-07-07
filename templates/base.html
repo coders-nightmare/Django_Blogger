@@ -41,9 +41,22 @@
             <form method="GET" action="/search/" class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query"
                     id="query" />
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                <button class="btn btn-outline-success my-2 my-sm-0 mr-2" type="submit">
                     Search
                 </button>
+                {% if user.is_authenticated %}
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Welcome! {{user.username}}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/logout">LogOut</a>
+                        </div>
+                    </li>
+                </ul>
+                {% else %}
                 <!-- Button to trigger signup modal -->
                 <button type="button" class="btn btn-outline-success my-2 mx-2 my-sm-0" data-toggle="modal"
                     data-target="#signupModal">
@@ -54,6 +67,7 @@
                     data-target="#signinModal">
                     SignIn
                 </button>
+                {% endif %}
             </form>
         </div>
     </nav>
