@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Contact
 from django.contrib import messages
-from blog.models import Post
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from .models import Contact
+from blog.models import Post
 # Create your views here.
 
 
@@ -87,3 +88,28 @@ def handleSignup(request):
         return redirect('/')
     else:
         return HttpResponse("<h1>404 - Not Found</h1>")
+
+
+# handleing login
+def handleLogin(request):
+    if(request.method == "POST"):
+        loginusername = request.POST.get('loginusername', '')
+        loginpassword = request.POST.get('loginpassword', '')
+
+        # authenticating
+        user = authenticate(username=loginusername, password=loginpassword)
+        if user is not None:
+            login(request, user)
+            messages.success(request, "Successfully LoggedIn")
+            return redirect('/')
+        else:
+            messages.error(request, "Invalid Credentials, Please Try again")
+            return redirect('/')
+    return HttpResponse("<h1>404 - Not Found</h1>")
+
+
+# handleing logout
+def handleLogout(request):
+    logout(request)
+    messages.success(request, "Successfully LoggedOut")
+    return redirect('/')
