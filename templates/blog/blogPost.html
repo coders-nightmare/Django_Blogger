@@ -4,20 +4,28 @@ blogPost
 {%endblock%}
 {% block body %}
 <div class="container">
-    <div class="row my-4">
-        <div class="col blog-main">
+  <div class="row my-4">
+    <div class="col blog-main">
 
-          <div class="blog-post">
-            <h2 class="blog-post-title">{{post.title}}</h2>
-            <p class="blog-post-meta">{{post.timeStamp|date:"D d M Y"}} -<a href="/about">{{post.author}}</a></p>
-            <hr>
+      <div class="blog-post">
+        <h2 class="blog-post-title">{{post.title}}</h2>
+        <p class="blog-post-meta">{{post.timeStamp|date:"D d M Y"}} -<a href="/about">{{post.author}}</a></p>
+        <hr>
 
-            <p>{{post.content}}</p>
-            <hr>
+        <p>{{post.content}}</p>
+        <hr>
 
-          </div><!-- /.blog-post -->
+      </div><!-- /.blog-post -->
 
-        </div>
     </div>
+  </div>
+</div>
+<div class="container">
+  <h2>Comments
+  </h2>
+  <div class="row my-3">
+    <div class="col-md-2">image here</div>
+    <div class="col-md-10">comment here</div>
+  </div>
 </div>
 {% endblock body %}
