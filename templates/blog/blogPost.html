@@ -1,9 +1,11 @@
 {% extends 'base.html'%}
+{% load static %}
 {%block title%}
 blogPost
 {%endblock%}
 {% block body %}
 <div class="container">
+
   <div class="row my-4">
     <div class="col blog-main">
 
@@ -23,9 +25,25 @@ blogPost
 <div class="container">
   <h2>Comments
   </h2>
+  <form action="/blog/postComment/" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="comment">Post Comment</label>
+      <input type="text" class="form-control" name="comment" id="comment" placeholder="enter comment here">
+    </div>
+    <input type="hidden" name="postSno" value="{{post.sno}}">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  {% for comment in comments%}
   <div class="row my-3">
-    <div class="col-md-2">image here</div>
-    <div class="col-md-10">comment here</div>
+    <div class="col-md-1"><img class="rounded mx-auto d-block w-100" src="/static/blog/user1.png" alt="user"></div>
+    <div class="col-md-11">
+      <b>{{comment.user.username}}</b> at {{comment.timestamp}}
+      <div>
+        {{comment.comment}}
+      </div>
+    </div>
   </div>
+  {% endfor %}
 </div>
 {% endblock body %}
