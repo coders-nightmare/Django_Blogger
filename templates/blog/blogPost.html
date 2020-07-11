@@ -1,6 +1,7 @@
 {% extends 'base.html'%}
 {% load static %}
 {% load humanize %}
+{% load extras %}
 {%block title%}
 blogPost
 {%endblock%}
@@ -72,6 +73,13 @@ blogPost
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
           </div>
+        </div>
+        <div class="replies bg-danger my-2">
+          {% for reply in replyDict|get_val:comment.sno %}
+
+          {{reply}}
+          <br>
+          {%endfor%}
         </div>
       </div>
     </div>
