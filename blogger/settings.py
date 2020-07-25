@@ -25,9 +25,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '@bxctx&k*!r62f4u5ep6%5+pr3v_a43x8kmm5=*!#r4gkyar-y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["ritik-blogger.herokuapp.com", "127.0.0.1"]
 
 
 # Application definition
